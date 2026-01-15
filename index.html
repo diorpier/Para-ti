@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Cami 🤍</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Fondo tranquilo */
+body {
+    background: linear-gradient(180deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Estrellas */
+.estrella {
+    position: absolute;
+    width: 2px;
+    height: 90px;
+    background: linear-gradient(transparent, white);
+    animation: caer linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes caer {
+    from { transform: translateY(-100px); opacity: 1; }
+    to { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Contenedor */
+.contenedor {
+    position: relative;
+    z-index: 10;
+}
+
+/* Sobre */
+.sobre {
+    width: 320px;
+    height: 200px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Tapa del sobre */
+.tapa {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #e0e0e0;
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+    transform-origin: top;
+    transition: transform 1s;
+}
+
+/* Carta */
+.carta {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 180px;
+    background: rgba(255,255,255,0.95);
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s;
+    overflow-y: auto;
+}
+
+/* Abierto */
+.sobre.abierto .tapa {
+    transform: rotateX(180deg);
+}
+
+.sobre.abierto .carta {
+    opacity: 1;
+    transform: translateY(-140px);
+}
+
+/* Corazón */
+.corazon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    animation: latir 1.5s infinite;
+}
+
+@keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_3b0c3d2b4f.mp3" type="audio/mpeg">
+</audio>
+
+<div class="contenedor">
+    <div class="sobre" onclick="abrirCarta()">
+        <div class="tapa"></div>
+
+        <div class="carta">
+            <div class="corazon">🤍</div>
+
+            <p>
+                holaaa cami, perdón si dije que ya no te fastidiaría,
+                solo queria dejarte esta carta, porque sé que no ha sido un buen día para ti.
+            </p>
+
+            <p>
+                no sé que tanto pueda ayudarte este detalle,
+                pero espero que pueda hacerte sentir mejor saber que alguien esta para ti
+                e intentar mejorar tus días dificiles.
+            </p>
+
+            <p>
+                sabes que te quiero mucho, no me gusta que te sientas mal,
+                todo pasa, eres una gran chica, no me equivoqué cuando decidí arriesgarme por ti.
+            </p>
+
+            <p>
+                recuerda que te quiero mucho y que tienes personas
+                las cuales le importas mucho,
+                descansa si?
+            </p>
+
+            <p>
+                mañana será un nuevo y mejor día,
+                te quiero como la vaca muuuuchoooo 🐮🤍
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+/* Abrir carta + música */
+function abrirCarta() {
+    document.querySelector('.sobre').classList.add('abierto');
+    document.getElementById('musica').play();
+}
+
+/* Estrellas */
+function crearEstrella() {
+    const estrella = document.createElement("div");
+    estrella.classList.add("estrella");
+    estrella.style.left = Math.random() * window.innerWidth + "px";
+    estrella.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    document.body.appendChild(estrella);
+    setTimeout(() => estrella.remove(), 4000);
+}
+
+setInterval(crearEstrella, 120);
+</script>
+
+</body>
+</html>
